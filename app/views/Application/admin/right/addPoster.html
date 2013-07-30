@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>addPoster.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+  #{message flash:flash /}	
+    <form name="f1" id="f1" action="/addPoster.action" method="post" enctype="multipart/form-data">
+      <table border="0">
+        <tr>
+          <td>title:</td>
+          <td><input type="text" name="title" id="title" value="${flash['title']}"></td>
+        </tr>
+        <tr>
+          <td>detail:</td>
+          <td><textarea name="detail" id="detail" value="${flash['detail']}"></textarea></td>
+        </tr> 
+        <tr>
+        <td>photo:</td>
+        <td><input type="file" name="photo"></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center"><input type="submit"></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

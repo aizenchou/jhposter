@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>listUser.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+  #{message flash:flash /}
+    #{list items:users, as:'user'}
+	<div>
+		${user.id}
+		${user.username}
+		<a href="/deleteUser.action?id=${user.id}">删除</a>
+	</div>
+	#{/list}
+  </body>
+</html>

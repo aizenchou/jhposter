@@ -1,0 +1,12 @@
+#{if _flash.success!=null}
+<div class="alert">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>${_flash.success}</strong>
+</div>
+#{/if} 
+#{if _flash.error!=null}
+<div class="alert alert-error">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>${_flash.error}</strong>
+</div>
+#{/if}

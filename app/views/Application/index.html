@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>精弘海报</title> 
+<link rel='stylesheet' href='public/stylesheets/style.css' media='screen' />
+<script src="/public/javascripts/jquery.min.js"></script>
+<script src="/public/javascripts/scrollpagination.js"></script>
+<!--[if lt IE 9]>
+<script src="/public/javascripts/html5.js"></script>
+<![endif]-->
+<script src="/public/javascripts/blocksit.min.js"></script>
+
+<script>
+
+$(document).ready(function() {
+	//vendor script
+	$('#header')
+	.css({ 'top':-50 })
+	.delay(1000)
+	.animate({'top': 0}, 800);
+	
+	$('#footer')
+	.css({ 'bottom':-15 })
+	.delay(1000)
+	.animate({'bottom': 0}, 800);
+	
+	//blocksit define
+	$(window).load( function() {
+		$('#container').BlocksIt({
+			numOfCol: 5,
+			offsetX: 8,
+			offsetY: 8
+		});
+	});
+	
+	//window resize
+	var currentWidth = 1100;
+	$(window).resize(function() {
+		var winWidth = $(window).width();
+		var conWidth;
+		if(winWidth < 660) {
+			conWidth = 440;
+			col = 2
+		} else if(winWidth < 880) {
+			conWidth = 660;
+			col = 3
+		} else if(winWidth < 1100) {
+			conWidth = 880;
+			col = 4;
+		} else {
+			conWidth = 1100;
+			col = 5;
+		}
+		
+		if(conWidth != currentWidth) {
+			currentWidth = conWidth;
+			$('#container').width(conWidth);
+			$('#container').BlocksIt({
+				numOfCol: col,
+				offsetX: 8,
+				offsetY: 8
+			});
+		}
+	});
+});
+</script>
+</head>
+<body>
+<!-- Content -->
+<section id="wrapper">
+<div id="container"> 
+#{list items:posters, as:'poster'}
+	<div class="grid">
+		<div class="imgholder">
+			<img src="${poster.photo}" />
+		</div>
+		<strong>${poster.title}</strong>
+		<p>${poster.detail.length() > 30 ? poster.detail[0..30] + '…' : poster.detail}</p>
+		<div class="meta">by ${poster.submitter}</div>
+	</div>
+	#{/list}
+	${outString}
+</div>
+</section>
+<a id="next" href="/outhtml.action?page=3"></a>
+	<script src="/public/javascripts/jquery.infinitescroll.js"></script>
+	<script src="/public/javascripts/manual-trigger.js"></script>	
+	<script>
+	
+	$('#container').infinitescroll({
+		navSelector  	: "#next:last",
+		nextSelector 	: "a#next:last",
+		itemSelector 	: "#container .grid",
+	//	debug		 	: true,
+		dataType	 	: 'html',
+        maxPage         : 100,
+//		prefill			: true,
+//		path: ["/outhtml.action?page=", ""]匹配url，两个效果一样
+		path: function(index) {
+			return "/outhtml.action?page="+index;
+		}
+    }, function(newElements, data, url){
+    //这个函数是每一次读取新div的时候运行一些代码，这里就顺便用blocksit分好了
+        var winWidth = $(window).width();
+        if(winWidth < 660) {
+			conWidth = 440;
+			col = 2
+		} else if(winWidth < 880) {
+			conWidth = 660;
+			col = 3
+		} else if(winWidth < 1100) {
+			conWidth = 880;
+			col = 4;
+		} else {
+			conWidth = 1100;
+			col = 5;
+		}
+       $('#container').BlocksIt({
+				numOfCol: col,
+				offsetX: 8,
+				offsetY: 8
+			});
+    	//下面两行主要是为了测试用
+//    	window.console && console.log('context: ',this);
+//    	window.console && console.log('returned: ', newElements);
+    	
+    });
+	</script>
+</body>
+</html>

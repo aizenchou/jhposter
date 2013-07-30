@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>listPoster.html</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+</head>
+
+<body>
+  #{message flash:flash /}	
+	#{list items:posters, as:'poster'}
+	<div>
+		${poster.title} ${poster.detail} ${poster.getTime()} 
+		<img src="${poster.photo}" style="width: 200px"> 
+		%{
+				if (session.get("type").equals("3")||session.get("type").equals("2")) {
+		 }%
+		                <a href="@{Manage.deletePoster(poster.id,page)}">删除</a> 
+	    %{
+		        }else if(session.get("type").equals("1")){
+	     }%
+	                    <a href="@{Application.deleteOwnPoster(poster.id,page)}">删除</a> 
+	     %{
+	            }
+	     }%
+		
+		#{if poster.issubmit == false&&(session.get("type").equals("3")||session.get("type").equals("2"))}
+		<a href="/submitPoster.action?id=${poster.id}&page=${page}">发布</a>
+		#{/if}
+	</div>
+	#{/list} 
+	#{if isAll != true}
+	<div>
+		<ul>
+			#{if page != 1}
+			<li><a href="/listUnPoster?page=${page-1}"> 上一页 </a>
+			</li> 
+			#{/if} 
+			
+			#{list items:1..Pagenumber, as:'currentpage'}
+			<li class=#{if currentpage==page} "active" #{/if} >
+			<a href="/listUnPoster?page=${currentpage}">${currentpage}</a>
+			</li> 
+			#{/list}
+
+			#{if page !=Pagenumber}
+			<li>
+			<a href="/listUnPoster?page=${page+1}"> 下一页 </a>
+			</li> 
+			#{/if}
+
+		</ul>
+	</div>
+	
+	#{/if} 
+	#{if isAll == true}
+	<div>
+		<ul>
+			#{if page != 1}
+			<li>
+			<a href="/listAllPoster?page=${page-1}"> 上一页 </a>
+			</li> 
+			#{/if} 
+			
+			#{list items:1..Pagenumber, as:'currentpage'}
+			<li class=#{if currentpage==page} "active" #{/if} >
+			<a href="/listAllPoster?page=${currentpage}">${currentpage}</a>
+			</li> 
+			#{/list}
+
+			#{if page !=Pagenumber}
+			<li>
+			<a href="/listAllPoster?page=${page+1}"> 下一页 </a>
+			</li> 
+			#{/if}
+
+		</ul>
+	</div>
+	#{/if}
+</body>
+</html>
