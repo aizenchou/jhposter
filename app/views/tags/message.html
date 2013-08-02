@@ -5,8 +5,7 @@
 </div>
 #{/if} 
 #{if _flash.error!=null}
-<div class="alert alert-error">
-	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	<strong>${_flash.error}</strong>
-</div>
+<div class="alert alert-error" style="display: block;">
+      <button class="close" data-dismiss="alert"></button>
+      <span>${_flash.error}</span> </div>
 #{/if}

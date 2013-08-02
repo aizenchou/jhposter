@@ -4,18 +4,14 @@
 <link rel="stylesheet" href="/public/metronic/css/DT_bootstrap.css" />
 #{headerbar /}
 <div class="page-container row-fluid">
-#{if isAll != true}
-#{siderbar type:'poster',url:'Un'/}
-#{/if}#{else}
-#{siderbar type:'poster',url:'All'/}
-#{/else}
+#{siderbar type:'poster',url:'Own'/}
 <div class="page-content">
 <div class="container-fluid">
 <br>
 <ul class="breadcrumb">
   <li> <i class="icon-home"></i> <a href="index.html">Home</a> <i class="icon-angle-right"></i> </li>
   <li> 海报管理 <i class="icon-angle-right"></i> </li>
-  <li>${isAll != true ? "未审批海报" : "所有海报"}</li>
+  <li>我发布的海报</li>
 </ul>
 
 <div class="message">#{message flash:flash /}</div>
@@ -40,37 +36,24 @@
  	 <td class="center hidden-480"> ${poster.getTime()}</td>
  	 <td >
 
-		 %{
-				if (session.get("type").equals("3")||session.get("type").equals("2")) {
-		 }%
-		                <a href="@{Manage.deletePoster(poster.id,page)}"><span class="label label-inverse">删除</span></a> 
-		                #{if poster.issubmit == false}
-		                <a href="/submitPoster.action?id=${poster.id}&page=${page}"><span class="label label-success">发布</span></a>
-		                #{/if}
-	     %{
-		        }else if(session.get("type").equals("1")){
-	     }%
 	                    #{if poster.issubmit == false}
 		                <span class="label label-warning">未审核</span>
 		                <a href="@{Application.deleteOwnPoster(poster.id,page)}"><span class="label label-inverse">删除</span></a> 
 		                #{/if}#{else}
 		                <span class="label label-success">已通过审核</span>
 		                #{/else}
-	                    
-	     %{
-	            }
-	     }%	</td>
+     </td>
 	</tr>
 	#{/list} 
 </tbody>
 </table>
 	<div class="dataTables_paginate paging_bootstrap pagination">
   <ul>
-    <li class="prev #{if page == 1}disabled#{/if}"><a href="/${isAll != true ? "listUnPoster" : "listAllPoster"}?page=${page-1}">← <span class="hidden-480">Prev</span></a></li>
+    <li class="prev #{if page == 1}disabled#{/if}"><a href="/listOwnPoster?page=${page-1}">← <span class="hidden-480">Prev</span></a></li>
     #{list items:1..Pagenumber, as:'currentpage'}
-    <li class=#{if currentpage==page} "active" #{/if} > <a href="/${isAll != true ? "listUnPoster" : "listAllPoster"}?page=${currentpage}">${currentpage}</a> </li>
+    <li class=#{if currentpage==page} "active" #{/if} > <a href="/listOwnPoster?page=${currentpage}">${currentpage}</a> </li>
     #{/list}
-    <li class="next #{if page == Pagenumber}disabled#{/if}"><a href="/${isAll != true ? "listUnPoster" : "listAllPoster"}?page=${page+1}"><span class="hidden-480">Next</span> → </a></li>
+    <li class="next #{if page == Pagenumber}disabled#{/if}"><a href="/listOwnPoster?page=${page+1}"><span class="hidden-480">Next</span> → </a></li>
   </ul>
 </div>
 </div>

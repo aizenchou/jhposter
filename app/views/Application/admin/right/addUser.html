@@ -1,55 +1,77 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>addUser.html</title>
-
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="this is my page">
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-
-<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
-
-</head>
-
-<body>
-  #{message flash:flash /}	
-	<form name="f1" id="f1" action="/addUser.action" method="post">
-		<table border="0">
-			<tr>
-				<td>Username:</td>
-				<td><input type="text" name="username">
-				</td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type="password" name="password">
-				</td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type="password" name="psw">
-				</td>
-			</tr>
-			<tr>
-				<td>类型</td>
-				<td>
-				<select name="type" id="type">
-				%{
+#{extends 'main.html' /}
+#{set title:'增加用户' /}
+<link rel="stylesheet" type="text/css" href="/public/metronic/css/bootstrap-fileupload.css" />
+#{headerbar /}
+<div class="page-container row-fluid"> 
+#{siderbar type:'user', url:'add'/}
+  <div class="page-content">
+    <div class="container-fluid"> <br>
+      <ul class="breadcrumb">
+        <li> <i class="icon-home"></i> <a href="index.html">Home</a> <i class="icon-angle-right"></i> </li>
+        <li> 用户管理 <i class="icon-angle-right"></i> </li>
+        <li>增加用户</li>
+      </ul>
+      <div class="portlet-body form">
+        <div class="message">#{message flash:flash /}</div>
+        <form class="form-horizontal form-bordered form-row-stripped  register-form" action="/addUser.action" method="post">
+          <div class="control-group">
+            <label class="control-label">用户名</label>
+            <div class="controls">
+              <div class="input-icon left"> <i class="icon-user"></i>
+                <input class="m-wrap placeholder-no-fix" type="text" placeholder="用户名" name="username"/>
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">密码</label>
+            <div class="controls">
+              <div class="input-icon left"> <i class="icon-lock"></i>
+                <input class="m-wrap placeholder-no-fix" type="password" id="register_password" placeholder="密码" name="password"/>
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">再次输入密码</label>
+            <div class="controls">
+              <div class="input-icon left"> <i class="icon-ok"></i>
+                <input class="m-wrap placeholder-no-fix" type="password" placeholder="再次键入密码" name="rpassword"/>
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Email</label>
+            <div class="controls">
+              <div class="input-icon left"> <i class="icon-envelope"></i>
+                <input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email"/>
+              </div>
+            </div>
+          </div>
+          <div class="control-group last">
+            <label class="control-label">权限</label>
+            <div class="controls" style="width:300px;">
+              <select  class="m-wrap span12">
+                
+          		%{
 				if (session.get("type").equals("3")) {
 		        }%
-		                <option value="2">管理员</option>
+		                
+                <option value="2">管理员</option>
+                
 		        %{
 		        }
 				}%
-						<option value="1">发布者</option>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="submit">
-				</td>
-			</tr>
-		</table>
-	</form>
-</body>
-</html>
+          
+                <option value="">发布者</option>
+              </select>
+              <span class="help-block">选择权限.</span> </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn blue"><i class="icon-ok"></i> 保存</button>
+            &nbsp;&nbsp;
+            <button type="reset" class="btn">取消</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

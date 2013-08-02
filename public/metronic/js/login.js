@@ -22,10 +22,10 @@ var Login = function () {
 
 	            messages: {
 	                username: {
-	                    required: "Username is required."
+	                    required: "用户名为必填项."
 	                },
 	                password: {
-	                    required: "Password is required."
+	                    required: "密码是必填项."
 	                }
 	            },
 
@@ -47,19 +47,10 @@ var Login = function () {
 	                error.addClass('help-small no-left-padding').insertAfter(element.closest('.input-icon'));
 	            },
 
-	            submitHandler: function (form) {
-	                window.location.href = "index.html";
-	            }
+	          
 	        });
 
-	        $('.login-form input').keypress(function (e) {
-	            if (e.which == 13) {
-	                if ($('.login-form').validate().form()) {
-	                    window.location.href = "index.html";
-	                }
-	                return false;
-	            }
-	        });
+	       
 
 	        $('.forget-form').validate({
 	            errorElement: 'label', //default input error message container
@@ -75,7 +66,7 @@ var Login = function () {
 
 	            messages: {
 	                email: {
-	                    required: "Email is required."
+	                    required: "邮箱为必填项."
 	                }
 	            },
 
@@ -147,7 +138,7 @@ var Login = function () {
 
 	            messages: { // custom messages for radio buttons and checkboxes
 	                tnc: {
-	                    required: "Please accept TNC first."
+	                    required: "请无条件接受上述条款."
 	                }
 	            },
 
@@ -172,10 +163,6 @@ var Login = function () {
 	                    error.addClass('help-small no-left-padding').insertAfter(element.closest('.input-icon'));
 	                }
 	            },
-
-	            submitHandler: function (form) {
-	                window.location.href = "index.html";
-	            }
 	        });
 
 	        jQuery('#register-btn').click(function () {

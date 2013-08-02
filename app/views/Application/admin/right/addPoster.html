@@ -1,36 +1,49 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>addPoster.html</title>
-	
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="this is my page">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    
-    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
-
-  </head>
-  
-  <body>
-  #{message flash:flash /}	
-    <form name="f1" id="f1" action="/addPoster.action" method="post" enctype="multipart/form-data">
-      <table border="0">
-        <tr>
-          <td>title:</td>
-          <td><input type="text" name="title" id="title" value="${flash['title']}"></td>
-        </tr>
-        <tr>
-          <td>detail:</td>
-          <td><textarea name="detail" id="detail" value="${flash['detail']}"></textarea></td>
-        </tr> 
-        <tr>
-        <td>photo:</td>
-        <td><input type="file" name="photo"></td>
-        </tr>
-        <tr>
-          <td colspan="2" align="center"><input type="submit"></td>
-        </tr>
-      </table>
-    </form>
-  </body>
-</html>
+#{extends 'main.html' /}
+#{set title:'增加海报' /}
+<link rel="stylesheet" type="text/css" href="/public/metronic/css/bootstrap-fileupload.css" />
+#{headerbar /}
+<div class="page-container row-fluid"> 
+#{siderbar type:'poster', url:'Add'/}
+  <div class="page-content">
+    <div class="container-fluid"> <br>
+      <ul class="breadcrumb">
+        <li> <i class="icon-home"></i> <a href="index.html">Home</a> <i class="icon-angle-right"></i> </li>
+        <li> 海报管理 <i class="icon-angle-right"></i> </li>
+        <li>增加海报</li>
+      </ul>
+      <div class="portlet-body form">
+      <div class="message">#{message flash:flash /}</div>
+        <form class="form-horizontal" action="/addPoster.action" method="post" enctype="multipart/form-data">
+          <div class="control-group">
+            <label class="control-label">标题：</label>
+            <div class="controls">
+              <input type="text" name="title" value="${flash['title']}" class="span6 m-wrap popovers" data-trigger="hover" data-content="请不要带有任何HTML标签" data-original-title="NOTICE~!" />
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">描述：</label>
+            <div class="controls">
+              <textarea class="large m-wrap" name="detail" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">图片上传</label>
+            <div class="controls">
+              <div class="fileupload fileupload-new" data-provides="fileupload">
+                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"> <img src="/public/metronic/image/noimage.png" alt="" /> </div>
+                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                <div> <span class="btn btn-file"><span class="fileupload-new">选择图像</span> <span class="fileupload-exists">更改</span>
+                  <input type="file" class="default" name="photo"/>
+                  </span> <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">移除</a> </div>
+              </div>
+              <span class="label label-important">注意！</span> <span> 图片预览控件只在最新版本的Firefox, Chrome, Opera, Safari 上使用！至于Internet Explorer。。你看着办。。</span> </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn blue">提交 &nbsp;<i class="icon-share"></i></button> &nbsp; &nbsp; &nbsp;
+            <button type="reset" class="btn">取消 &nbsp;<i class="icon-pencil"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

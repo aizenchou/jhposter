@@ -11,7 +11,8 @@ import play.data.validation.*;
 @Entity
 @Table(name="user")
 public class User extends Model {
-	
+
+
 	@Required
 	@Column(name="username")
 	public String username;
@@ -23,6 +24,8 @@ public class User extends Model {
 	@Column(name="type")
 	private int type;
 	
+	@Column(name="email")
+	private String email;
 	
 	public User(String username, String password, int type){
 		
@@ -31,6 +34,21 @@ public class User extends Model {
 		this.type = type;
 	}
 
+	public User(String username, String password, int type, String email) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.type = type;
+		this.email = email;
+	}
+	
+
+	public User(String username, String password, String email) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+	}
 
 	public String getUsername() {
 		return username;
@@ -59,6 +77,16 @@ public class User extends Model {
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	

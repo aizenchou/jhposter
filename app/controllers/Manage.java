@@ -40,10 +40,10 @@ public class Manage extends Application {
 			page = 1;
 		long Pagenumber;
 		List<Poster> posters = Poster.find(" order by dealtime desc").fetch(
-				page, 5);
+				page, 10);
 		boolean isAll = true;
 		long posternumber = Poster.count();
-		Pagenumber = posternumber / 5 + 1;
+		Pagenumber = posternumber / 10 + 1;
 		if (posternumber == 0) {
 			flash.error("没有相应记录！");
 		}
@@ -56,9 +56,9 @@ public class Manage extends Application {
 			page = 1;
 		long Pagenumber;
 		List<Poster> posters = Poster.find("issubmit=0 order by dealtime desc")
-				.fetch(page, 5);
+				.fetch(page, 10);
 		long posternumber = Poster.count("issubmit=0");
-		Pagenumber = posternumber / 5 + 1;
+		Pagenumber = posternumber / 10 + 1;
 		if (posternumber == 0) {
 			flash.error("没有相应记录！");
 		}
@@ -75,12 +75,14 @@ public class Manage extends Application {
 		render("/Application/admin/right/addUser.html");
 	}
 
-	public static void addUser(String username, String password, int type) {
+	public static void addUser(String username, String password, int type, String email) {
 		if (session.get("type").equals("2")) {
 			type = 1;
 		}
-		User user = new User(username, password, type);
+		User user = new User(username, password, type, email);
 		user.save();
+		flash.success("添加成功");
+		addUserPage();
 	}
 
 	public static void deleteUser(long id) {

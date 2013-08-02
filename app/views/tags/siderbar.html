@@ -1,0 +1,40 @@
+<div class="page-sidebar nav-collapse collapse">
+  <ul class="page-sidebar-menu">
+    <li>
+      <div class="sidebar-toggler hidden-phone"></div>
+    </li>
+    <li>
+      <form class="sidebar-search">
+        <div class="input-box"> <a href="javascript:;" class="remove"></a>
+          <input type="text" placeholder="Search...">
+          <input type="button" class="submit" value=" ">
+        </div>
+      </form>
+    </li>
+    <li class="start "> <a href="/"> <i class="icon-home"></i> <span class="title">&nbsp;首&nbsp;&nbsp;&nbsp;&nbsp;页</span> </a> </li>
+    <li class=#{if _type=='user'} "active" #{/if}> 
+    <a href="javascript:;"> 
+    <i class="icon-user"></i> <span class="title">用户管理</span> 
+    #{if _type=='user'} <span class="selected"></span> #{/if}
+    <span class="arrow last #{if _type=='user'} open #{/if}"></span> 
+    </a>
+      <ul class="sub-menu">
+         <li class="#{if _url=='add'} active #{/if}"> <a href="/addUser"> 增加用户</a> </li>
+        <li> <a href="/listUser"> 用户列表</a> </li>
+      </ul>
+    </li>
+    <li class="last #{if _type=='poster'} active #{/if}"> 
+    <a href="javascript:;"> 
+    <i class="icon-file-text"></i> <span class="title">海报管理</span> 
+    #{if _type=='poster'} <span class="selected"></span> #{/if}
+    <span class="arrow last #{if _type=='poster'} open #{/if}"></span> 
+    </a>
+      <ul class="sub-menu">
+        <li class="#{if _url=='Add'} active #{/if}"> <a href="/addPoster"> 增加海报</a> </li>
+        <li class="#{if _url=='Own'} active #{/if}"> <a href="/listOwnPoster">浏览我发布的海报</a> </li>
+        <li class="#{if _url=='Un'} active #{/if}"> <a href="/listUnPoster"> 浏览未审批的海报</a> </li>
+        <li class="#{if _url=='All'} active #{/if}"> <a href="/listAllPoster"> 浏览所有海报</a> </li>
+      </ul>
+    </li>
+  </ul>
+</div>
