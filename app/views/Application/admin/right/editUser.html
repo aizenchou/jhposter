@@ -1,29 +1,37 @@
 #{extends 'main.html' /}
-#{set title:'增加用户' /}
+#{set title:'修改资料' /}
 <link rel="stylesheet" type="text/css" href="/public/metronic/css/bootstrap-fileupload.css" />
 #{headerbar /}
 <div class="page-container row-fluid"> 
-#{siderbar type:'user', url:'add'/}
+#{siderbar type:'user', url:'edit'/}
   <div class="page-content">
     <div class="container-fluid"> <br>
       <ul class="breadcrumb">
         <li> <i class="icon-home"></i> <a href="index.html">Home</a> <i class="icon-angle-right"></i> </li>
         <li> 用户管理 <i class="icon-angle-right"></i> </li>
-        <li>增加用户</li>
+        <li>修改资料</li>
       </ul>
       <div class="portlet-body form">
         <div class="message">#{message flash:flash /}</div>
-        <form class="form-horizontal form-bordered form-row-stripped  register-form" action="/addUser.action" method="post">
+        <form class="form-horizontal form-bordered form-row-stripped  register-form" action="/editUser.action" method="post">
           <div class="control-group">
             <label class="control-label">用户名</label>
             <div class="controls">
               <div class="input-icon left"> <i class="icon-user"></i>
-                <input class="m-wrap placeholder-no-fix" type="text" placeholder="用户名" name="username" value="${flash['username']}"/>
+                <input class="m-wrap placeholder-no-fix" readonly type="text" placeholder="用户名" name="username" value="${session.get('username')}"/>
               </div>
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label">密码</label>
+            <label class="control-label">原始密码</label>
+            <div class="controls">
+              <div class="input-icon left"> <i class="icon-lock"></i>
+                <input class="m-wrap placeholder-no-fix" type="password" id="old_password" placeholder="密码" name="oldpassword"/>
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">新密码</label>
             <div class="controls">
               <div class="input-icon left"> <i class="icon-lock"></i>
                 <input class="m-wrap placeholder-no-fix" type="password" id="register_password" placeholder="密码" name="password"/>
@@ -46,27 +54,8 @@
               </div>
             </div>
           </div>
-          <div class="control-group last">
-            <label class="control-label">权限</label>
-            <div class="controls" style="width:300px;">
-              <select  class="m-wrap span12">
-                
-          		%{
-				if (session.get("type").equals("3")) {
-		        }%
-		                
-                <option value="2">管理员</option>
-                
-		        %{
-		        }
-				}%
-          
-                <option value="">发布者</option>
-              </select>
-              <span class="help-block">选择权限.</span> </div>
-          </div>
           <div class="form-actions">
-            <button type="submit" class="btn blue"><i class="icon-ok"></i> 确定</button>
+            <button type="submit" class="btn blue"><i class="icon-ok"></i> 保存</button>
             &nbsp;&nbsp;
             <button type="reset" class="btn">取消</button>
           </div>

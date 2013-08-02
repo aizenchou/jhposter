@@ -79,9 +79,15 @@ public class Manage extends Application {
 		if (session.get("type").equals("2")) {
 			type = 1;
 		}
-		User user = new User(username, password, type, email);
-		user.save();
-		flash.success("添加成功");
+		if (checkEmail(email)&&checkUsername(username)) {
+			User user = new User(username, password, type, email);
+			user.save();
+			flash.success("添加成功");
+		} else {
+			flash("username", username);
+			flash("email", email);
+			flash.error("用户名和邮箱已被人使用！");
+		}
 		addUserPage();
 	}
 

@@ -49,11 +49,11 @@
 </table>
 	<div class="dataTables_paginate paging_bootstrap pagination">
   <ul>
-    <li class="prev #{if page == 1}disabled#{/if}"><a href="/listOwnPoster?page=${page-1}">← <span class="hidden-480">Prev</span></a></li>
+    <li class="prev #{if page == 1}disabled#{/if}"><a href="/listOwnPoster?page=${page-1}">← <span class="hidden-480">上一页</span></a></li>
     #{list items:1..Pagenumber, as:'currentpage'}
     <li class=#{if currentpage==page} "active" #{/if} > <a href="/listOwnPoster?page=${currentpage}">${currentpage}</a> </li>
     #{/list}
-    <li class="next #{if page == Pagenumber}disabled#{/if}"><a href="/listOwnPoster?page=${page+1}"><span class="hidden-480">Next</span> → </a></li>
+    <li class="next #{if page == Pagenumber}disabled#{/if}"><a href="/listOwnPoster?page=${page+1}"><span class="hidden-480">下一页</span> → </a></li>
   </ul>
 </div>
 </div>

@@ -8,7 +8,6 @@ GET      /                                      Application.index
 GET      /login.html                            Application.loginpage
 POST     /login.action                          Application.login
 POST     /register.action                       Application.register
-GET      /checkUsername.action                  Application.checkUsername
 
 GET      /outhtml.action                        Application.outhtml
 
@@ -30,6 +29,8 @@ GET      /deleteUser.action                     Manage.deleteUser
 
 GET      /listUser                              Manage.listUser
 
+GET      /editUser                              Application.editUserPage
+POST     /editUser.action                       Application.editUser
 GET      /submitPoster.action                   Manage.submitPoster
 
 GET      /dashboard.html                        Application.dashboard

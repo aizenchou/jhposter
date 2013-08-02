@@ -1,24 +1,44 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>listUser.html</title>
-	
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="this is my page">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    
-    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+#{extends 'main.html' /}
+#{set title:'用户列表' /}
+<link rel="stylesheet" type="text/css" href="/public/metronic/css/select2_metro.css" />
+<link rel="stylesheet" href="/public/metronic/css/DT_bootstrap.css" />
+#{headerbar /}
+<div class="page-container row-fluid">
+#{siderbar type:'user',url:'list'/}
+<div class="page-content">
+<div class="container-fluid">
+<br>
+<ul class="breadcrumb">
+  <li> <i class="icon-home"></i> <a href="index.html">Home</a> <i class="icon-angle-right"></i> </li>
+  <li> 用户管理 <i class="icon-angle-right"></i> </li>
+  <li>用户列表</li>
+</ul>
 
-  </head>
-  
-  <body>
-  #{message flash:flash /}
-    #{list items:users, as:'user'}
-	<div>
-		${user.id}
-		${user.username}
-		<a href="/deleteUser.action?id=${user.id}">删除</a>
-	</div>
-	#{/list}
-  </body>
-</html>
+<div class="message">#{message flash:flash /}</div>
+<table class="table table-striped table-bordered table-hover" id="sample_3">
+  <thead>
+    <tr>
+      <th style="width:8px;"><input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes" /></th>
+      <th>用户名</th>
+      <th class="hidden-480">邮箱</th>
+      <th class="hidden-480">类别</th>
+      <th class="hidden-480">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+   #{list items:users, as:'user'}
+    <tr class="odd gradeX">
+      <td><input type="checkbox" class="checkboxes" value="${user.id}" /></td>
+      <td>${user.username}</td>
+      <td class="hidden-480"><a href="mailto:${user.email}">${user.email}</a></td>
+      <td class="hidden-480">${user.type==2?'管理员':'发布者'}</td>
+      <td><a href="/deleteUser.action?id=${user.id}"><span class="label label-inverse">删除</span></a></td>
+    </tr>
+    #{/list}
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+
+

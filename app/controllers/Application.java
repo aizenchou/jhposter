@@ -45,11 +45,21 @@ public class Application extends Controller {
 		loginpage();
 	}
 
-	public static void checkUsername(String username) {
-		if (models.User.find("username=?", username) != null) {
-			renderHtml("用户名已存在！请重新输入！");
+	public static boolean checkUsername(String username) {
+		if (models.User.find("username=?", username).first() != null) {
+			return false;
 		} else {
-			renderHtml("此用户名可用！");
+			return true;
+		}
+	}
+
+	public static boolean checkEmail(String email) {
+		if (email == null) {
+			return false;
+		} else if (models.User.find("email=?", email).first() != null) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 
@@ -134,16 +144,14 @@ public class Application extends Controller {
 			page = 1;
 		long Pagenumber;
 		List<Poster> posters = Poster.find(
-				"submitter=? order by dealtime desc", username)
-				.fetch(page, 10);
-		long posternumber = Poster
-				.count("submitter=?", username);
+				"submitter=? order by dealtime desc", username).fetch(page, 10);
+		long posternumber = Poster.count("submitter=?", username);
 		Pagenumber = posternumber / 10 + 1;
 		if (posternumber == 0) {
 			flash.error("没有相应记录！");
 		}
-		render("/Application/admin/right/listOwnPoster.html", posters, Pagenumber,
-				page);
+		render("/Application/admin/right/listOwnPoster.html", posters,
+				Pagenumber, page);
 	}
 
 	public static void deleteOwnPoster(long id, int page) {// 只能删除自己发布的海报
@@ -164,15 +172,38 @@ public class Application extends Controller {
 	}
 
 	public static void dashboard() {
-		if (session.get("type").equals("3")) {
-			superManage();
-		} else if (session.get("type").equals("2")) {
-			manage();
-		} else if (session.get("type").equals("1")) {
-			submit();
+		if (session.get("type") != null) {
+			render("/Application/admin/dashboard.html");
 		} else {
 			loginpage();
 		}
 	}
 
+	public static void editUserPage() {
+		render("/Application/admin/right/editUser.html");
+	}
+
+	public static void editUser(String username, String oldpassword,
+			String password, String email) {
+		User user = models.User.find("username=?", username).first();
+		if (user.getPassword().equals(oldpassword)) {
+			user.setPassword(password);
+			System.out.println(checkEmail(email));
+			if (user.getEmail().equals(email)) {
+				user.save();
+				flash.success("修改成功！");
+			} else if (checkEmail(email)) {
+				user.setEmail(email);
+				user.save();
+				flash.success("修改成功！");
+			} else {
+				flash.error("邮箱不可用！");
+			}
+		} else {
+			flash.error("原始密码错误！");
+			flash("email", email);
+		}
+		flash("email", email);
+		editUserPage();
+	}
 }
