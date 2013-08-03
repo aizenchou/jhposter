@@ -67,26 +67,39 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+<!-- Header -->
+
+<header id="header">
+<div style="float: right;"><a href="/login.html">登录/注册 &nbsp;</a></div>
+</header>
+
 <!-- Content -->
 <section id="wrapper">
+<hgroup>
+  <h2>精弘海报</h2> 
+  <h3>这里标题的字体设置不知道啊魂淡，哥不是美工。求破</h3>
+</hgroup>
+
 <div id="container"> 
 #{list items:posters, as:'poster'}
 	<div class="grid">
+	
 		<div class="imgholder">
-			<img src="${poster.photo}" />
+			<a target="_blank" href="/showDetail.action?id=${poster.id}"><img src="${poster.photo}" /></a>
 		</div>
 		<strong>${poster.title}</strong>
 		<p>${poster.detail.length() > 30 ? poster.detail[0..30] + '…' : poster.detail}</p>
 		<div class="meta">by ${poster.submitter}</div>
+	
 	</div>
 	#{/list}
 	${outString}
 </div>
 </section>
 <a id="next" href="/outhtml.action?page=3"></a>
-	<script src="/public/javascripts/jquery.infinitescroll.js"></script>
-	<script src="/public/javascripts/manual-trigger.js"></script>	
-	<script>
+<script src="/public/javascripts/jquery.infinitescroll.js"></script>
+<script src="/public/javascripts/manual-trigger.js"></script>	
+<script>
 	
 	$('#container').infinitescroll({
 		navSelector  	: "#next:last",

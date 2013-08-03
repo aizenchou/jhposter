@@ -3,6 +3,7 @@ Error Pages
 ***/
 
 /* 404 page option #1 */
+@charset "utf-8";
 
 .page-404 {
   text-align: center;
@@ -24,6 +25,7 @@ Error Pages
   display: inline-block;
   padding-top: 0px;
   text-align: left;
+  font-family:"Microsoft YaHei UI", "微软雅黑";
 }
 
 /* 500 page option #1 */
@@ -45,6 +47,7 @@ Error Pages
   margin-left: 40px;
   display: inline-block;
   text-align: left;
+  font-family:"Microsoft YaHei UI", "微软雅黑";
 }
 
 /* 404 page option #2*/

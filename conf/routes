@@ -9,6 +9,8 @@ GET      /login.html                            Application.loginpage
 POST     /login.action                          Application.login
 POST     /register.action                       Application.register
 
+GET      /showDetail.action                     Application.showDetail
+
 GET      /outhtml.action                        Application.outhtml
 
 GET      /addPoster                             Application.addPosterPage

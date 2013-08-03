@@ -100,13 +100,13 @@ public class Manage extends Application {
 		if (session.get("type").equals("3")) {
 			List<User> users = models.User.find("type between 1 and 2").fetch();
 			if (users.size() == 0 || users == null) {
-				flash.error("没用相应用户！");
+				flash.error("没有相应用户！");
 			}
 			render("/Application/admin/right/listUser.html", users);
 		} else if (session.get("type").equals("2")) {
 			List<User> users = models.User.find("type=1").fetch();
 			if (users.size() == 0 || users == null) {
-				flash.error("没用相应用户！");
+				flash.error("没有相应用户！");
 			}
 			render("/Application/admin/right/listUser.html", users);
 		} else {

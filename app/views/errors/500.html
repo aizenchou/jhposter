@@ -1,21 +1,35 @@
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <title>Application error</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=${_response_encoding}"/>	
-    </head>
-    <body>
-        #{if play.mode.name() == 'DEV'}
-            #{500 exception /}
-        #{/if}
-        #{else}
-            <h1>Oops, an error occured</h1>
-            #{if exception instanceof play.exceptions.PlayException}
-                <p>
-                    This exception has been logged with id <strong>${exception.id}</strong>.
-                </p>
-            #{/if}
-        #{/else}
-    </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/public/metronic/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/public/metronic/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+<link href="/public/metronic/css/style-metro.css" rel="stylesheet" type="text/css">
+<link href="/public/metronic/css/style.css" rel="stylesheet" type="text/css">
+<link href="/public/metronic/css/error.css" rel="stylesheet" type="text/css">
+<title>应用程序错误</title>
+</head>
+<body class="page-500-full-page">
+<div class="row-fluid">
+  <div class="span12 page-500">
+    <div class=" number"> 500 </div>
+    <div class=" details">
+      <h3>啊哦，出错了。</h3>
+      <p> 我们正在修复它！<br />
+        稍后访问~！<br />
+        <br />
+      </p>
+    </div>
+  </div>
+  <div> #{if play.mode.name() == 'DEV'}
+    #{500 exception /}
+    #{/if}
+    #{else}
+    <h1>Oops, an error occured</h1>
+    #{if exception instanceof play.exceptions.PlayException}
+    <p> This exception has been logged with id <strong>${exception.id}</strong>. </p>
+    #{/if}
+    #{/else} </div>
+</div>
+</body>
 </html>

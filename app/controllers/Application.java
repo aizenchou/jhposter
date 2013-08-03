@@ -23,7 +23,7 @@ import models.*;
 public class Application extends Controller {
 
 	@Before(unless = { "loginpage", "login", "index", "pagetest", "outhtml",
-			"register" })
+			"register", "showDetail" })
 	static void checkLogin() {
 		if (session.get("username") == null) {
 			flash.error("您没有登录！请登录后再操作！");
@@ -35,6 +35,11 @@ public class Application extends Controller {
 		List<Poster> posters = Poster.find("issubmit=1 order by dealtime desc")
 				.fetch(20);
 		render(posters);
+	}
+
+	public static void showDetail(long id) {
+		Poster poster = models.Poster.findById(id);
+		render("/Application/showDetail.html", poster);
 	}
 
 	public static void register(String username, String password, String email) {
@@ -69,9 +74,11 @@ public class Application extends Controller {
 		String outString = "<div id=\"container\"> ";
 		for (int i = 0; i < posters.size(); i++) {
 			Poster poster = posters.get(i);
-			outString += "<div class=\'grid\'><div class=\'imgholder\'><img src=\'"
+			outString += "<div class=\'grid\'><div class=\'imgholder\'><a target=\"_blank\" href=\"/showDetail.action?id="
+					+ poster.getId()
+					+ "\"><img src=\'"
 					+ poster.getPhoto()
-					+ "\' /></div><strong>"
+					+ "\' /></a></div><strong>"
 					+ poster.getTitle()
 					+ "</strong><p>"
 					+ (poster.getDetail().length() > 30 ? poster.getDetail()
@@ -157,18 +164,6 @@ public class Application extends Controller {
 	public static void deleteOwnPoster(long id, int page) {// 只能删除自己发布的海报
 		models.Poster.delete("id=?", id);
 		listOwnPoster(page);
-	}
-
-	private static void superManage() {
-		render("/Application/admin/superManage.html");
-	}
-
-	private static void manage() {
-		render("/Application/admin/manage.html");
-	}
-
-	private static void submit() {
-		render("/Application/admin/submit.html");
 	}
 
 	public static void dashboard() {
