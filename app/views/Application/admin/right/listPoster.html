@@ -35,8 +35,8 @@
 	<tr class="odd gradeX">
 	 <td><input type="checkbox" class="checkboxes" name="items" value="${poster.id}" /></td>
 	 <td>${poster.title}</td>
- 	 <td class="hidden-480">${poster.detail.length() > 20 ? poster.detail[0..20] + '…' : poster.detail}</td>
- 	 <td class="hidden-480">${poster.photo.length() > 30 ? poster.photo[0..30] + '…' : poster.photo}</td>
+ 	 <td class="hidden-480">${ poster.detail.length() > 30 ? poster.detail[0..30] + '…' : poster.detail}</td>
+ 	 <td class="hidden-480">${ poster.photo.length() > 40 ? poster.photo[0..40] + '…' : poster.photo}</td>
  	 <td class="center hidden-480"> ${poster.getTime()}</td>
  	 <td >
 
