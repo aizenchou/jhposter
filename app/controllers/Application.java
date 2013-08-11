@@ -23,7 +23,7 @@ import models.*;
 public class Application extends Controller {
 
 	@Before(unless = { "loginpage", "login", "index", "pagetest", "outhtml",
-			"register", "showDetail" })
+			"register", "showDetail", "forgetPsw" })
 	static void checkLogin() {
 		if (session.get("username") == null) {
 			flash.error("您没有登录！请登录后再操作！");
@@ -31,6 +31,17 @@ public class Application extends Controller {
 		}
 	}
 
+	public static void forgetPsw(String email) {
+		User user = models.User.find("email=?",email).first();
+		if (user!=null) {
+			user.setPassword(user.getUsername());
+			user.save();
+			flash.success("密码已重置为与用户名相同！请重新登录并修改密码！");
+			loginpage();
+		} else {
+			flash.error("不存在的邮箱！");
+		}
+	}
 	public static void index() {
 		List<Poster> posters = Poster.find("issubmit=1 order by dealtime desc")
 				.fetch(20);

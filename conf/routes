@@ -8,7 +8,7 @@ GET      /                                      Application.index
 GET      /login.html                            Application.loginpage
 POST     /login.action                          Application.login
 POST     /register.action                       Application.register
-
+POST     /forgetPsw.action                      Application.forgetPsw
 GET      /showDetail.action                     Application.showDetail
 
 GET      /outhtml.action                        Application.outhtml
