@@ -162,8 +162,15 @@ public class Application extends Controller {
 	}
 
 	public static void deleteOwnPoster(long id, int page) {// 只能删除自己发布的海报
-		models.Poster.delete("id=?", id);
+		Poster poster = models.Poster.findById(id);
+		if (poster.getSubmitter().equals(session.get("username"))) {
+			Files.delete(Play.getFile(poster.getPhoto()));
+			poster.delete();
+		} else {
+			flash.error("权限不足！那不是你发布的海报！");
+		}
 		listOwnPoster(page);
+
 	}
 
 	public static void dashboard() {

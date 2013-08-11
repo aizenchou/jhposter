@@ -44,7 +44,7 @@
 		 %{
 				if (session.get("type").equals("3")||session.get("type").equals("2")) {
 		 }%
-		                <a href="@{Manage.deletePoster(poster.id,page)}"><span class="label label-inverse">删除</span></a> 
+		                <a href="@{Manage.deletePoster(poster.id,page,isAll)}"><span class="label label-inverse">删除</span></a> 
 		                #{if poster.issubmit == false}
 		                <a href="/submitPoster.action?id=${poster.id}&page=${page}"><span class="label label-success">发布</span></a>
 		                #{/if}

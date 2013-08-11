@@ -66,8 +66,13 @@ public class Manage extends Application {
 				page);
 	}
 
-	public static void deletePoster(long id, int page) {
-		models.Poster.delete("id=?", id);
+	public static void deletePoster(long id, int page, boolean isAll) {
+		Poster poster = models.Poster.findById(id);
+		Files.delete(Play.getFile(poster.getPhoto()));
+		poster.delete();
+		if (isAll) {
+			listAllPoster(page);
+		}
 		listUnPoster(page);
 	}
 
