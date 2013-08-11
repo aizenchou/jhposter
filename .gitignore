@@ -10,6 +10,7 @@ tmp/
 test/
 test-result/
 eclipse/
+public/poster/
 *.tmp
 *.bak
 *.swp
