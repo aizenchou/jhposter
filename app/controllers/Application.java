@@ -40,6 +40,7 @@ public class Application extends Controller {
 			loginpage();
 		} else {
 			flash.error("不存在的邮箱！");
+			loginpage();
 		}
 	}
 	public static void index() {
