@@ -35,6 +35,8 @@ GET      /editUser                              Application.editUserPage
 POST     /editUser.action                       Application.editUser
 GET      /submitPoster.action                   Manage.submitPoster
 
+GET      /selectAll.action                      Manage.selectAll
+
 GET      /dashboard.html                        Application.dashboard
 
 # Ignore favicon requests

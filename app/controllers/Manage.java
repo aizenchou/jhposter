@@ -71,15 +71,20 @@ public class Manage extends Application {
 		listUnPoster(page);
 	}
 
+	private static void deletePosterById(long id) {
+		models.Poster.delete("id=?", id);
+	}
+
 	public static void addUserPage() {
 		render("/Application/admin/right/addUser.html");
 	}
 
-	public static void addUser(String username, String password, int type, String email) {
+	public static void addUser(String username, String password, int type,
+			String email) {
 		if (session.get("type").equals("2")) {
 			type = 1;
 		}
-		if (checkEmail(email)&&checkUsername(username)) {
+		if (checkEmail(email) && checkUsername(username)) {
 			User user = new User(username, password, type, email);
 			user.save();
 			flash.success("添加成功");
@@ -120,5 +125,26 @@ public class Manage extends Application {
 		post.setIssubmit(true);
 		post.save();
 		listUnPoster(page);
+	}
+
+	private static void submitPosterById(long id) {
+		models.Poster post = models.Poster.find("id=?", id).first();
+		post.setIssubmit(true);
+		post.save();
+	}
+
+	public static void selectAll(int page, long[] items, int dowhat) {
+		if (dowhat == 1) {
+			for (int i = 0; i < items.length; i++) {
+				long l = items[i];
+				deletePosterById(l);
+			}
+		} else if (dowhat == 2) {
+			for (int i = 0; i < items.length; i++) {
+				long l = items[i];
+				submitPosterById(l);
+			}
+		}
+		listAllPoster(page);
 	}
 }
