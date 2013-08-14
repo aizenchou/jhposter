@@ -32,8 +32,8 @@ public class Application extends Controller {
 	}
 
 	public static void forgetPsw(String email) {
-		User user = models.User.find("email=?",email).first();
-		if (user!=null) {
+		User user = models.User.find("email=?", email).first();
+		if (user != null) {
 			user.setPassword(user.getUsername());
 			user.save();
 			flash.success("密码已重置为与用户名相同！请重新登录并修改密码！");
@@ -43,6 +43,7 @@ public class Application extends Controller {
 			loginpage();
 		}
 	}
+
 	public static void index() {
 		List<Poster> posters = Poster.find("issubmit=1 order by dealtime desc")
 				.fetch(20);
@@ -86,16 +87,20 @@ public class Application extends Controller {
 		String outString = "<div id=\"container\"> ";
 		for (int i = 0; i < posters.size(); i++) {
 			Poster poster = posters.get(i);
-			outString += "<div class=\'grid\'><div class=\'imgholder\'><a target=\"_blank\" href=\"/showDetail.action?id="
-					+ poster.getId()
-					+ "\"><img src=\'"
+			outString += "<div class=\"grid\"><div class=\"imgholder\"><a href=\""
 					+ poster.getPhoto()
-					+ "\' /></a></div><strong>"
+					+ "\" data-lightbox=\"image-poster\" title=\""
 					+ poster.getTitle()
-					+ "</strong><p>"
+					+ "\"><img src=\""
+					+ poster.getPhoto()
+					+ "\" /></a></div><a target=\"_blank\" href=\"/showDetail.action?id="
+					+ poster.getId()
+					+ "\"><strong>"
+					+ poster.getTitle()
+					+ "</strong></a><p>"
 					+ (poster.getDetail().length() > 30 ? poster.getDetail()
 							.substring(0, 30) + "..." : poster.getDetail())
-					+ "</p><div class=\'meta\'>by "
+					+ "</p><div class=\"meta\">by "
 					+ poster.getSubmitter()
 					+ "</div></div>";
 		}

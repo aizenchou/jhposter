@@ -72,8 +72,10 @@ public class Manage extends Application {
 		poster.delete();
 		if (isAll) {
 			listAllPoster(page);
+		} else {
+			listUnPoster(page);
 		}
-		listUnPoster(page);
+
 	}
 
 	private static void deletePosterById(long id) {
@@ -125,11 +127,15 @@ public class Manage extends Application {
 
 	}
 
-	public static void submitPoster(long id, int page) {
+	public static void submitPoster(long id, int page, boolean isAll) {
 		models.Poster post = models.Poster.find("id=?", id).first();
 		post.setIssubmit(true);
 		post.save();
-		listUnPoster(page);
+		if (isAll) {
+			listAllPoster(page);
+		} else {
+			listUnPoster(page);
+		}
 	}
 
 	private static void submitPosterById(long id) {

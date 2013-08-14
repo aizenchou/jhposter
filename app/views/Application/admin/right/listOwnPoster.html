@@ -2,6 +2,7 @@
 #{set title:'海报列表' /}
 <link rel="stylesheet" type="text/css" href="/public/metronic/css/select2_metro.css" />
 <link rel="stylesheet" href="/public/metronic/css/DT_bootstrap.css" />
+<link rel="stylesheet" href="/public/lightbox/css/lightbox.css" media="screen"/>
 #{headerbar /}
 <div class="page-container row-fluid">
 #{siderbar type:'poster',url:'Own'/}
@@ -32,7 +33,7 @@
 	 <td><input type="checkbox" class="checkboxes" name="items" value="${poster.id}" /></td>
 	 <td>${poster.title}</td>
  	 <td class="hidden-480">${poster.detail.length() > 20 ? poster.detail[0..20] + '…' : poster.detail}</td>
- 	 <td class="hidden-480">${poster.photo.length() > 30 ? poster.photo[0..30] + '…' : poster.photo}</td>
+ 	 <td class="hidden-480"><a href="${poster.photo}" data-lightbox="image-poster" title="${poster.title}">${poster.photo.length() > 30 ? poster.photo[0..30] + '…' : poster.photo}</a></td>
  	 <td class="center hidden-480"> ${poster.getTime()}</td>
  	 <td >
 
@@ -59,5 +60,6 @@
 </div>
 </div>
 </div>
+<script src="/public/lightbox/js/lightbox-2.6.min.js"></script>
 
 

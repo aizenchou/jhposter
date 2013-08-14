@@ -2,6 +2,8 @@
 #{set title:'海报列表' /}
 <link rel="stylesheet" type="text/css" href="/public/metronic/css/select2_metro.css" />
 <link rel="stylesheet" href="/public/metronic/css/DT_bootstrap.css" />
+<link rel="stylesheet" href="/public/lightbox/css/lightbox.css" media="screen"/>
+
 #{headerbar /}
 <div class="page-container row-fluid">
 #{if isAll != true}
@@ -37,7 +39,7 @@
 	 <td><input type="checkbox" class="checkboxes" name="items" value="${poster.id}" /></td>
 	 <td>${poster.title}</td>
  	 <td class="hidden-480">${ poster.detail.length() > 30 ? poster.detail[0..30] + '…' : poster.detail}</td>
- 	 <td class="hidden-480">${ poster.photo.length() > 40 ? poster.photo[0..40] + '…' : poster.photo}</td>
+ 	 <td class="hidden-480"><a href="${poster.photo}" data-lightbox="image-poster" title="${poster.title}">${ poster.photo.length() > 40 ? poster.photo[0..40] + '…' : poster.photo}</a></td>
  	 <td class="center hidden-480"> ${poster.getTime()}</td>
  	 <td >
 
@@ -46,7 +48,7 @@
 		 }%
 		                <a href="@{Manage.deletePoster(poster.id,page,isAll)}"><span class="label label-inverse">删除</span></a> 
 		                #{if poster.issubmit == false}
-		                <a href="/submitPoster.action?id=${poster.id}&page=${page}"><span class="label label-success">发布</span></a>
+		                <a href="@{Manage.submitPoster(poster.id,page,isAll)}"><span class="label label-success">发布</span></a>
 		                #{/if}
 	     %{
 		        }else if(session.get("type").equals("1")){
@@ -86,5 +88,5 @@
 </div>
 </div>
 </div>
-
+<script src="/public/lightbox/js/lightbox-2.6.min.js"></script>
 
