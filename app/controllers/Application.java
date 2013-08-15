@@ -197,6 +197,8 @@ public class Application extends Controller {
 
 	public static void dashboard() {
 		if (session.get("type") != null) {
+			long count = models.Poster.count("issubmit=0");
+			session.put("count", count);
 			render("/Application/admin/dashboard.html");
 		} else {
 			loginpage();

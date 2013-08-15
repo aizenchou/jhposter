@@ -2,6 +2,7 @@ package controllers;
 
 import play.*;
 import play.db.jpa.JPABase;
+import play.db.jpa.Model;
 import play.libs.Files;
 import play.mvc.*;
 
@@ -51,7 +52,7 @@ public class Manage extends Application {
 				page, isAll);
 	}
 
-	public static void listUnPoster(int page) {
+	public static void listUnPoster(int page, boolean message) {
 		if (page == 0)
 			page = 1;
 		long Pagenumber;
@@ -61,6 +62,9 @@ public class Manage extends Application {
 		Pagenumber = posternumber / 10 + 1;
 		if (posternumber == 0) {
 			flash.error("没有相应记录！");
+		}
+		if (message) {
+			session.put("count", 0);
 		}
 		render("/Application/admin/right/listPoster.html", posters, Pagenumber,
 				page);
@@ -73,7 +77,7 @@ public class Manage extends Application {
 		if (isAll) {
 			listAllPoster(page);
 		} else {
-			listUnPoster(page);
+			listUnPoster(page,false);
 		}
 
 	}
@@ -134,7 +138,7 @@ public class Manage extends Application {
 		if (isAll) {
 			listAllPoster(page);
 		} else {
-			listUnPoster(page);
+			listUnPoster(page,false);
 		}
 	}
 
