@@ -114,10 +114,15 @@ public class Application extends Controller {
 	}
 
 	public static void loginpage() {
-		render("/Application/login.html");
+		if (session.get("type") != null) {
+			dashboard();
+		} else {
+			render("/Application/login.html");
+		}
 	}
 
 	public static void login(String username, String password, String remember) {
+
 		models.User user = models.User.find("username=? and password=?",
 				username, password).first();
 		if (user != null) {
@@ -224,5 +229,10 @@ public class Application extends Controller {
 		}
 		flash("email", email);
 		editUserPage();
+	}
+	
+	public static void logout() {
+		session.clear();
+		loginpage();
 	}
 }
