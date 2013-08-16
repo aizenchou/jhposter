@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1
--- 生成日期: 2013 年 08 月 16 日 16:12
+-- 生成日期: 2013 年 08 月 16 日 16:46
 -- 服务器版本: 5.5.27
 -- PHP 版本: 5.4.7
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `poster` (
   `submitter` varchar(20) NOT NULL COMMENT '发布者ID',
   `title` varchar(255) NOT NULL COMMENT '标题',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- 转存表中的数据 `poster`
@@ -63,7 +63,8 @@ INSERT INTO `poster` (`id`, `dealtime`, `detail`, `issubmit`, `photo`, `submitte
 (24, '2013-08-16 21:51:48', '地方的', '1', '/public/poster/1020130816215148.jpg', 'admin', '风格的'),
 (25, '2013-08-16 21:51:56', ' 啊坟蛋发的发', '1', '/public/poster/67b8a9014c086e06203309fb03087bf40bd1cb8c20130816215156.jpg', 'admin', '啊啊'),
 (26, '2013-08-16 21:52:02', '去去 ', '1', '/public/poster/0d3a0ef41bd5ad6e98c8e2fd81cb39dbb6fd3c9120130816215202.jpg', 'admin', '请求 '),
-(27, '2013-08-16 21:52:11', '一天天', '1', '/public/poster/05954aed2e738bd49c638493a08b87d6267ff9f720130816215211.jpg', 'admin', 'uiuC');
+(27, '2013-08-16 21:52:11', '一天天', '1', '/public/poster/05954aed2e738bd49c638493a08b87d6267ff9f720130816215211.jpg', 'admin', 'uiuC'),
+(28, '2013-08-16 22:27:48', '这些', '1', '/public/poster/420130816222748.jpg', 'admin', '这些');
 
 -- --------------------------------------------------------
 
