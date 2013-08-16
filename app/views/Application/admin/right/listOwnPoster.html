@@ -1,8 +1,8 @@
 #{extends 'main.html' /}
 #{set title:'海报列表' /}
-<link rel="stylesheet" type="text/css" href="/public/metronic/css/select2_metro.css" />
-<link rel="stylesheet" href="/public/metronic/css/DT_bootstrap.css" />
-<link rel="stylesheet" href="/public/lightbox/css/lightbox.css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="@{'/public/metronic/css/select2_metro.css'}" />
+<link rel="stylesheet" href="@{'/public/metronic/css/DT_bootstrap.css'}" />
+<link rel="stylesheet" href="@{'/public/lightbox/css/lightbox.css'}" media="screen"/>
 #{headerbar /}
 <div class="page-container row-fluid">
 #{siderbar type:'poster',url:'Own'/}
@@ -60,6 +60,6 @@
 </div>
 </div>
 </div>
-<script src="/public/lightbox/js/lightbox-2.6.min.js"></script>
+<script src="@{'/public/lightbox/js/lightbox-2.6.min.js'}"></script>
 
 

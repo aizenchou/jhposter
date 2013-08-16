@@ -3,14 +3,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>精弘海报</title> 
-<link rel="stylesheet" href="/public/stylesheets/style.css" media="screen" />
-<link rel="stylesheet" href="/public/lightbox/css/lightbox.css" media="screen"/>
-<script src="/public/javascripts/jquery.min.js"></script>
-<script src="/public/javascripts/scrollpagination.js"></script>
+<link rel="stylesheet" href="@{'/public/stylesheets/style.css'}" media="screen" />
+<link rel="stylesheet" href="@{'/public/lightbox/css/lightbox.css'}" media="screen"/>
+<link rel="shortcut icon" type="image/ico" href="@{'/public/images/favicon.ico'}" />
+<script src="@{'/public/javascripts/jquery.min.js'}"></script>
+<script src="@{'/public/javascripts/scrollpagination.js'}"></script>
 <!--[if lt IE 9]>
-<script src="/public/javascripts/html5.js"></script>
+<script src="@{'/public/javascripts/html5.js'}"></script>
 <![endif]-->
-<script src="/public/javascripts/blocksit.min.js"></script>
+<script src="@{'/public/javascripts/blocksit.min.js'}"></script>
 
 <script>
 
@@ -71,7 +72,11 @@ $(document).ready(function() {
 <!-- Header -->
 
 <header id="header">
+#{if session.get('username')==null}
 <div style="float: right;"><a href="/login.html">登录/注册 &nbsp;</a></div>
+#{/if}#{else}
+<div style="float: right;"><a>欢迎您，${session.get('username')}！&nbsp;</a><a href="/login.html">进入仪表盘 &nbsp;</a></div>
+#{/else}
 </header>
 
 <!-- Content -->
@@ -98,9 +103,9 @@ $(document).ready(function() {
 </div>
 </section>
 <a id="next" href="/outhtml.action?page=3"></a>
-<script src="/public/javascripts/jquery.infinitescroll.js"></script>
-<script src="/public/javascripts/manual-trigger.js"></script>	
-<script src="/public/lightbox/js/lightbox-2.6.min.js"></script>
+<script src="@{'/public/javascripts/jquery.infinitescroll.js'}"></script>
+<script src="@{'/public/javascripts/manual-trigger.js'}"></script>	
+<script src="@{'/public/lightbox/js/lightbox-2.6.min.js'}"></script>
 <script>
 	
 	$('#container').infinitescroll({
