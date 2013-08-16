@@ -155,7 +155,8 @@ public class Application extends Controller {
 						photo.getName().length());
 		String path = "/public/poster/" + photoNewName;
 		Files.copy(photo, Play.getFile(path));
-		Poster poster = new Poster(title, detail, path, session.get("username"));
+		System.out.println(new Date());
+		Poster poster = new Poster(title, detail, new Date(), path, session.get("username"));
 		if (session.get("type").equals("2") || session.get("type").equals("3")) {
 			poster.setIssubmit(true);
 			flash.success("保存成功！");
