@@ -92,10 +92,12 @@ public class Manage extends Application {
 
 	public static void addUser(String username, String password, int type,
 			String email) {
+		System.out.println(type);
 		if (session.get("type").equals("2")) {
 			type = 1;
 		}
 		if (checkEmail(email) && checkUsername(username)) {
+			System.out.println(type);
 			User user = new User(username, password, type, email);
 			user.save();
 			flash.success("添加成功");

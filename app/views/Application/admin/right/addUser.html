@@ -49,7 +49,7 @@
           <div class="control-group last">
             <label class="control-label">权限</label>
             <div class="controls" style="width:300px;">
-              <select  class="m-wrap span12">
+              <select name="type" class="m-wrap span12">
                 
           		%{
 				if (session.get("type").equals("3")) {
@@ -61,7 +61,7 @@
 		        }
 				}%
           
-                <option value="">发布者</option>
+                <option value="1">发布者</option>
               </select>
               <span class="help-block">选择权限.</span> </div>
           </div>
