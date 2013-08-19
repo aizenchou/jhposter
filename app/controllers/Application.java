@@ -147,6 +147,10 @@ public class Application extends Controller {
 
 	public static void addPoster(String title, String detail, File photo)
 			throws IOException {
+		if (title == null || photo == null) {
+			flash.error("标题或图片不能为空！");
+			addPosterPage();
+		}
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
 		String photoNewName = photo.getName().substring(0,
 				photo.getName().lastIndexOf("."))
@@ -155,7 +159,8 @@ public class Application extends Controller {
 						photo.getName().length());
 		String path = "/public/poster/" + photoNewName;
 		Files.copy(photo, Play.getFile(path));
-		Poster poster = new Poster(title, detail, new Date(), path, session.get("username"));
+		Poster poster = new Poster(title, detail, new Date(), path,
+				session.get("username"));
 		if (session.get("type").equals("2") || session.get("type").equals("3")) {
 			poster.setIssubmit(true);
 			flash.success("保存成功！");
@@ -232,7 +237,7 @@ public class Application extends Controller {
 		flash("email", email);
 		editUserPage();
 	}
-	
+
 	public static void logout() {
 		session.clear();
 		loginpage();
