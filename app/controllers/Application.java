@@ -6,11 +6,15 @@ import play.db.jpa.JPABase;
 import play.libs.Files;
 import play.mvc.*;
 import play.mvc.Http.Cookie;
+import play.cache.*;
+import sun.security.provider.MD5;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import javax.persistence.Cache;
 
 import org.apache.commons.io.FileUtils;
 import org.joda.time.DateTime;
@@ -23,7 +27,7 @@ import models.*;
 public class Application extends Controller {
 
 	@Before(unless = { "loginpage", "login", "index", "pagetest", "outhtml",
-			"register", "showDetail", "forgetPsw" })
+			"register", "showDetail", "forgetPsw", "logout" })
 	static void checkLogin() {
 		if (session.get("username") == null) {
 			flash.error("您没有登录！请登录后再操作！");
@@ -131,7 +135,10 @@ public class Application extends Controller {
 			flash.success(username + "，您好！登陆成功！");
 			flash("username", username);
 			if (remember != null && remember.equals("1")) {
-				// 设置登录保存密码
+				play.cache.Cache cache = new play.cache.Cache() {
+				};
+				cache.set("username", user.getUsername(), "240h");//// 设置登录保存密码
+				cache.set("password", user.getPassword(), "240h");
 			}
 			dashboard();
 		} else {
