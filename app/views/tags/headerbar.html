@@ -8,13 +8,13 @@
             <li>
               <p>您有${session.get("count")}个待审批的海报请求</p>
             </li>
-            <li class="external"> <a href="/listUnPoster?message=true">查看所有未发布海报 <i class="m-icon-swapright"></i></a> </li>
+            <li class="external"> <a href="./listUnPoster?message=true">查看所有未发布海报 <i class="m-icon-swapright"></i></a> </li>
           </ul>
         </li>
        #{/if}
         <li class="dropdown user" style="padding: 5px;"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="username">${session.get("username")}</span> <i class="icon-angle-down"></i> </a>
           <ul class="dropdown-menu">
-            <li><a href="/editUser"><i class="icon-user"></i> 修改资料</a></li>
+            <li><a href="./editUser"><i class="icon-user"></i> 修改资料</a></li>
             <li class="divider"></li>
              <li><a href="@{Application.logout()}"><i class="icon-key"></i> 退出</a></li>
           </ul>

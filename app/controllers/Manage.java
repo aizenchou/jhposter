@@ -48,7 +48,7 @@ public class Manage extends Application {
 		if (posternumber == 0) {
 			flash.error("没有相应记录！");
 		}
-		render("/Application/admin/right/listPoster.html", posters, Pagenumber,
+		render("./Application/admin/right/listPoster.html", posters, Pagenumber,
 				page, isAll);
 	}
 
@@ -66,7 +66,7 @@ public class Manage extends Application {
 		if (message) {
 			session.put("count", 0);
 		}
-		render("/Application/admin/right/listPoster.html", posters, Pagenumber,
+		render("./Application/admin/right/listPoster.html", posters, Pagenumber,
 				page);
 	}
 
@@ -74,6 +74,7 @@ public class Manage extends Application {
 		Poster poster = models.Poster.findById(id);
 		Files.delete(Play.getFile(poster.getPhoto()));
 		poster.delete();
+		flash.success("删除成功！");
 		if (isAll) {
 			listAllPoster(page);
 		} else {
@@ -84,10 +85,11 @@ public class Manage extends Application {
 
 	private static void deletePosterById(long id) {
 		models.Poster.delete("id=?", id);
+		flash.success("删除成功！");
 	}
 
 	public static void addUserPage() {
-		render("/Application/admin/right/addUser.html");
+		render("./Application/admin/right/addUser.html");
 	}
 
 	public static void addUser(String username, String password, int type,
@@ -126,7 +128,7 @@ public class Manage extends Application {
 			if (users.size() == 0 || users == null) {
 				flash.error("没有相应用户！");
 			}
-			render("/Application/admin/right/listUser.html", users);
+			render("./Application/admin/right/listUser.html", users);
 		} else {
 			loginpage();
 		}

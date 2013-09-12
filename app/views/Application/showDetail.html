@@ -24,12 +24,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel">${poster.title}</h3>
               </div>
-              <div class="modal-body"> <a href="${poster.photo}"><img src="${poster.photo}"  style="width: 100%"></a> </div>
+              <div class="modal-body"> <a href="${'.'+poster.photo}"><img src="${'.'+poster.photo}"  style="width: 100%"></a> </div>
               <div class="modal-footer">
                 <button class="btn" data-dismiss="modal">关闭</button>
               </div>
             </div>
-            <a  href="#myModal" data-toggle="modal"><img src="${poster.photo}"/></a></div>
+            <a  href="#myModal" data-toggle="modal"><img src="${'.'+poster.photo}"/></a></div>
         </div>
       </li>
       <div class="detail">

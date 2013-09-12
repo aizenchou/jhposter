@@ -51,12 +51,12 @@ public class Application extends Controller {
 	public static void index() {
 		List<Poster> posters = Poster.find("issubmit=1 order by dealtime desc")
 				.fetch(20);
-		render(posters);
+		render("./Application/index.html",posters);
 	}
 
 	public static void showDetail(long id) {
 		Poster poster = models.Poster.findById(id);
-		render("/Application/showDetail.html", poster);
+		render("./Application/showDetail.html", poster);
 	}
 
 	public static void register(String username, String password, String email) {
@@ -91,13 +91,13 @@ public class Application extends Controller {
 		String outString = "<div id=\"container\"> ";
 		for (int i = 0; i < posters.size(); i++) {
 			Poster poster = posters.get(i);
-			outString += "<div class=\"grid\"><div class=\"imgholder\"><a href=\""
+			outString += "<div class=\"grid\"><div class=\"imgholder\"><a href=\"."
 					+ poster.getPhoto()
 					+ "\" data-lightbox=\"image-poster\" title=\""
 					+ poster.getTitle()
-					+ "\"><img src=\""
+					+ "\"><img src=\"."
 					+ poster.getPhoto()
-					+ "\" /></a></div><a target=\"_blank\" href=\"/showDetail.action?id="
+					+ "\" /></a></div><a target=\"_blank\" href=\"./showDetail.action?id="
 					+ poster.getId()
 					+ "\"><strong>"
 					+ poster.getTitle()
@@ -111,7 +111,7 @@ public class Application extends Controller {
 		if (posters.size() < 10) {
 		} else {
 			page++;
-			outString += "</div><a id=\"next\" href=\"/outhtml.action?page="
+			outString += "</div><a id=\"next\" href=\"./outhtml.action?page="
 					+ page + "\">next page?</a>";
 		}
 		renderHtml(outString);
@@ -121,7 +121,7 @@ public class Application extends Controller {
 		if (session.get("type") != null) {
 			dashboard();
 		} else {
-			render("/Application/login.html");
+			render("./Application/login.html");
 		}
 	}
 
@@ -144,12 +144,12 @@ public class Application extends Controller {
 		} else {
 			flash("username", username);
 			flash.error("用户名或密码错误");
-			render("/Application/login.html");
+			render("./Application/login.html");
 		}
 	}
 
 	public static void addPosterPage() {
-		render("/Application/admin/right/addPoster.html");
+		render("./Application/admin/right/addPoster.html");
 	}
 
 	public static void addPoster(String title, String detail, File photo)
@@ -191,7 +191,7 @@ public class Application extends Controller {
 		if (posternumber == 0) {
 			flash.error("没有相应记录！");
 		}
-		render("/Application/admin/right/listOwnPoster.html", posters,
+		render("./Application/admin/right/listOwnPoster.html", posters,
 				Pagenumber, page);
 	}
 
@@ -211,14 +211,14 @@ public class Application extends Controller {
 		if (session.get("type") != null) {
 			long count = models.Poster.count("issubmit=0");
 			session.put("count", count);
-			render("/Application/admin/dashboard.html");
+			render("./Application/admin/dashboard.html");
 		} else {
 			loginpage();
 		}
 	}
 
 	public static void editUserPage() {
-		render("/Application/admin/right/editUser.html");
+		render("./Application/admin/right/editUser.html");
 	}
 
 	public static void editUser(String username, String oldpassword,
@@ -247,6 +247,7 @@ public class Application extends Controller {
 
 	public static void logout() {
 		session.clear();
-		loginpage();
+		flash.success("退出成功！");
+		render("./Application/login.html");
 	}
 }

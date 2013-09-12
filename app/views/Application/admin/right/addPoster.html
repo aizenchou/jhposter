@@ -13,7 +13,7 @@
       </ul>
       <div class="portlet-body form">
       <div class="message">#{message flash:flash /}</div>
-        <form class="form-horizontal" action="/addPoster.action" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="./addPoster.action" method="post" enctype="multipart/form-data">
           <div class="control-group">
             <label class="control-label">标题：</label>
             <div class="controls">
@@ -30,7 +30,7 @@
             <label class="control-label">图片上传</label>
             <div class="controls">
               <div class="fileupload fileupload-new" data-provides="fileupload">
-                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"> <img src="/public/metronic/image/noimage.png" alt="" /> </div>
+                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"> <img src="./public/metronic/image/noimage.png" alt="" /> </div>
                 <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                 <div> <span class="btn btn-file"><span class="fileupload-new">选择图像</span> <span class="fileupload-exists">更改</span>
                   <input type="file" class="default" name="photo"/>

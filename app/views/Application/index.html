@@ -73,9 +73,9 @@ $(document).ready(function() {
 
 <header id="header">
 #{if session.get('username')==null}
-<div style="float: right;"><a href="/login.html">登录/注册 &nbsp;</a></div>
+<div style="float: right;"><a href="./login.html">登录/注册 &nbsp;</a></div>
 #{/if}#{else}
-<div style="float: right;"><a>欢迎您，${session.get('username')}！&nbsp;</a><a href="/login.html">进入仪表盘 &nbsp;</a></div>
+<div style="float: right;"><a>欢迎您，${session.get('username')}！&nbsp;</a><a href="./login.html">进入仪表盘 &nbsp;</a></div>
 #{/else}
 </header>
 
@@ -91,9 +91,9 @@ $(document).ready(function() {
 	<div class="grid">
 	
 		<div class="imgholder">
-			<a href="${poster.photo}" data-lightbox="image-poster" title="${poster.title}"><img src="${poster.photo}" /></a>
+			<a href="${'.'+poster.photo}" data-lightbox="image-poster" title="${poster.title}"><img src="${'.'+poster.photo}" /></a>
 		</div>
-		<a target="_blank" href="/showDetail.action?id=${poster.id}"><strong>${poster.title}</strong></a>
+		<a target="_blank" href="./showDetail.action?id=${poster.id}"><strong>${poster.title}</strong></a>
 		<p>${poster.detail.length() > 30 ? poster.detail[0..30] + '…' : poster.detail}</p>
 		<div class="meta">by ${poster.submitter}</div>
 	
@@ -102,7 +102,7 @@ $(document).ready(function() {
 	${outString}
 </div>
 </section>
-<a id="next" href="/outhtml.action?page=3"></a>
+<a id="next" href="./outhtml.action?page=3"></a>
 <script src="@{'/public/javascripts/jquery.infinitescroll.js'}"></script>
 <script src="@{'/public/javascripts/manual-trigger.js'}"></script>	
 <script src="@{'/public/lightbox/js/lightbox-2.6.min.js'}"></script>
@@ -118,7 +118,7 @@ $(document).ready(function() {
 //		prefill			: true,
 //		path: ["/outhtml.action?page=", ""]匹配url，两个效果一样
 		path: function(index) {
-			return "/outhtml.action?page="+index;
+			return "./outhtml.action?page="+index;
 		}
     }, function(newElements, data, url){
     //这个函数是每一次读取新div的时候运行一些代码，这里就顺便用blocksit分好了

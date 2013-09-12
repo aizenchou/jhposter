@@ -33,7 +33,7 @@
 	 <td><input type="checkbox" class="checkboxes" name="items" value="${poster.id}" /></td>
 	 <td>${poster.title}</td>
  	 <td class="hidden-480">${poster.detail.length() > 20 ? poster.detail[0..20] + '…' : poster.detail}</td>
- 	 <td class="hidden-480"><a href="${poster.photo}" data-lightbox="image-poster" title="${poster.title}">${poster.photo.length() > 30 ? poster.photo[0..30] + '…' : poster.photo}</a></td>
+ 	 <td class="hidden-480"><a href="${'.'+poster.photo}" data-lightbox="image-poster" title="${poster.title}">${poster.photo.length() > 30 ? poster.photo[0..30] + '…' : poster.photo}</a></td>
  	 <td class="center hidden-480"> ${poster.getTime()}</td>
  	 <td >
 
@@ -50,11 +50,11 @@
 </table>
 	<div class="dataTables_paginate paging_bootstrap pagination">
   <ul>
-    <li class="prev #{if page == 1}disabled#{/if}"><a href="/listOwnPoster?page=${page-1}">← <span class="hidden-480">上一页</span></a></li>
+    <li class="prev #{if page == 1}disabled#{/if}"><a href="./listOwnPoster?page=${page-1}">← <span class="hidden-480">上一页</span></a></li>
     #{list items:1..Pagenumber, as:'currentpage'}
-    <li class=#{if currentpage==page} "active" #{/if} > <a href="/listOwnPoster?page=${currentpage}">${currentpage}</a> </li>
+    <li class=#{if currentpage==page} "active" #{/if} > <a href="./listOwnPoster?page=${currentpage}">${currentpage}</a> </li>
     #{/list}
-    <li class="next #{if page == Pagenumber}disabled#{/if}"><a href="/listOwnPoster?page=${page+1}"><span class="hidden-480">下一页</span> → </a></li>
+    <li class="next #{if page == Pagenumber}disabled#{/if}"><a href="./listOwnPoster?page=${page+1}"><span class="hidden-480">下一页</span> → </a></li>
   </ul>
 </div>
 </div>

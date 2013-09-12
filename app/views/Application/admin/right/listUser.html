@@ -32,7 +32,7 @@
       <td>${user.username}</td>
       <td class="hidden-480"><a href="mailto:${user.email}">${user.email}</a></td>
       <td class="hidden-480">${user.type==2?'管理员':'发布者'}</td>
-      <td><a href="/deleteUser.action?id=${user.id}"><span class="label label-inverse">删除</span></a></td>
+      <td><a href="./deleteUser.action?id=${user.id}"><span class="label label-inverse">删除</span></a></td>
     </tr>
     #{/list}
   </tbody>
