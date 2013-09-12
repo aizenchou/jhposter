@@ -2,7 +2,8 @@
 <html lang="en" class="no-js demo-5">
 <head>
 <meta charset="UTF-8" />
-<title></title>
+<title>精弘海报</title>
+<link rel="shortcut icon" type="image/ico" href="@{'/public/images/favicon.ico'}">
 <link rel="stylesheet" type="text/css" href="@{'/public/bootstrap/css/bootstrap.css'}" />
 <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/detailpage.css'}" />
 <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/showDetail.css'}" />
@@ -19,17 +20,7 @@
       <li>
         <div class="bb-bookblock">
           <div class="bb-item">
-            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">${poster.title}</h3>
-              </div>
-              <div class="modal-body"> <a href="${'.'+poster.photo}"><img src="${'.'+poster.photo}"  style="width: 100%"></a> </div>
-              <div class="modal-footer">
-                <button class="btn" data-dismiss="modal">关闭</button>
-              </div>
-            </div>
-            <a  href="#myModal" data-toggle="modal"><img src="${'.'+poster.photo}"/></a></div>
+            <a href="${'.'+poster.photo}" target="_blank"><img src="${'.'+poster.photo}"/></a></div>
         </div>
       </li>
       <div class="detail">
@@ -42,3 +33,4 @@
 <!-- /container -->
 </body>
 </html>
+<!-- by Aizen aizenchou@hotmail.com -->
