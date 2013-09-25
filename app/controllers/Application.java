@@ -38,7 +38,7 @@ public class Application extends Controller {
 	public static void forgetPsw(String email) {
 		User user = models.User.find("email=?", email).first();
 		if (user != null) {
-			user.setPassword(user.getUsername());
+			user.setPassword(Util.MD5(user.getUsername()));
 			user.save();
 			flash.success("密码已重置为与用户名相同！请重新登录并修改密码！");
 			loginpage();
@@ -60,7 +60,7 @@ public class Application extends Controller {
 	}
 
 	public static void register(String username, String password, String email) {
-		User user = new User(username, password, email);
+		User user = new User(username, Util.MD5(password), email);
 		user.setType(1);
 		user.save();
 		flash.success("注册成功！请使用用户名和密码登录！");
@@ -128,7 +128,7 @@ public class Application extends Controller {
 	public static void login(String username, String password, String remember) {
 
 		models.User user = models.User.find("username=? and password=?",
-				username, password).first();
+				username, Util.MD5(password)).first();
 		if (user != null) {
 			session.put("username", user.getUsername());
 			session.put("type", user.getType());
@@ -138,7 +138,7 @@ public class Application extends Controller {
 				play.cache.Cache cache = new play.cache.Cache() {
 				};
 				cache.set("username", user.getUsername(), "240h");//// 设置登录保存密码
-				cache.set("password", user.getPassword(), "240h");
+				cache.set("password", Util.MD5(user.getPassword()), "240h");
 			}
 			dashboard();
 		} else {
@@ -224,9 +224,9 @@ public class Application extends Controller {
 	public static void editUser(String username, String oldpassword,
 			String password, String email) {
 		User user = models.User.find("username=?", username).first();
-		if (user.getPassword().equals(oldpassword)) {
-			user.setPassword(password);
-			System.out.println(checkEmail(email));
+		if (user.getPassword().equals(Util.MD5(oldpassword))) {
+			user.setPassword(Util.MD5(password));
+		//	System.out.println(checkEmail(email));
 			if (user.getEmail().equals(email)) {
 				user.save();
 				flash.success("修改成功！");
@@ -248,6 +248,6 @@ public class Application extends Controller {
 	public static void logout() {
 		session.clear();
 		flash.success("退出成功！");
-		render("./Application/login.html");
+		loginpage();
 	}
 }
