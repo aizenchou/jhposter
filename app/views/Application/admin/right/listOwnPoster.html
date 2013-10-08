@@ -10,7 +10,7 @@
 <div class="container-fluid">
 <br>
 <ul class="breadcrumb">
-  <li> <i class="icon-home"></i> <a href="index.html">Home</a> <i class="icon-angle-right"></i> </li>
+  <li> <i class="icon-home"></i> <a href="@{Application.index}">Home</a> <i class="icon-angle-right"></i> </li>
   <li> 海报管理 <i class="icon-angle-right"></i> </li>
   <li>我发布的海报</li>
 </ul>
@@ -50,11 +50,11 @@
 </table>
 	<div class="dataTables_paginate paging_bootstrap pagination">
   <ul>
-    <li class="prev #{if page == 1}disabled#{/if}"><a href="./listOwnPoster?page=${page-1}">← <span class="hidden-480">上一页</span></a></li>
+    <li class="prev #{if page == 1}disabled#{/if}"><a href="@{Application.listOwnPoster(page-1)}">← <span class="hidden-480">上一页</span></a></li>
     #{list items:1..Pagenumber, as:'currentpage'}
-    <li class=#{if currentpage==page} "active" #{/if} > <a href="./listOwnPoster?page=${currentpage}">${currentpage}</a> </li>
+    <li class=#{if currentpage==page} "active" #{/if} > <a href="@{Application.listOwnPoster(currentpage)}">${currentpage}</a> </li>
     #{/list}
-    <li class="next #{if page == Pagenumber}disabled#{/if}"><a href="./listOwnPoster?page=${page+1}"><span class="hidden-480">下一页</span> → </a></li>
+    <li class="next #{if page == Pagenumber}disabled#{/if}"><a href="@{Application.listOwnPoster(page+1)}"><span class="hidden-480">下一页</span> → </a></li>
   </ul>
 </div>
 </div>

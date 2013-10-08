@@ -114,6 +114,7 @@ public class Manage extends Application {
 	public static void deleteUser(long id) {
 		models.User.delete("id=?", id);
 		listUser();
+		flash.success("删除成功");
 	}
 
 	public static void listUser() {

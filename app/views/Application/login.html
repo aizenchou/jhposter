@@ -48,7 +48,7 @@
   
   <!-- BEGIN LOGIN FORM -->
   #{message flash:flash /}
-  <form class="form-vertical login-form" action="./login.action" method="post">
+  <form class="form-vertical login-form" action="@{Application.login()}" method="post">
     <h3 class="form-title">登录到你的账户</h3>
     <div class="alert alert-error hide">
       <button class="close" data-dismiss="alert"></button>
@@ -88,7 +88,7 @@
   
   <!-- BEGIN FORGOT PASSWORD FORM -->
   
-  <form class="form-vertical forget-form" action="./forgetPsw.action" method="post">
+  <form class="form-vertical forget-form" action="@{Application.forgetPsw()}" method="post">
     <h3 class="">忘记密码？</h3>
     <p>请输入你的邮箱以重置你的密码。</p>
     <div class="control-group">
@@ -108,7 +108,7 @@
   
   <!-- BEGIN REGISTRATION FORM -->
   
-  <form class="form-vertical register-form" action="./register.action" method="post">
+  <form class="form-vertical register-form" action="@{Application.register()}" method="post">
     <h3 class="">注册</h3>
     <p>在下面输入你的账户信息:</p>
     <div class="control-group">

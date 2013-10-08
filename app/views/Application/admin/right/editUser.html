@@ -13,7 +13,7 @@
       </ul>
       <div class="portlet-body form">
         <div class="message">#{message flash:flash /}</div>
-        <form class="form-horizontal form-bordered form-row-stripped  register-form" action="./editUser.action" method="post">
+        <form class="form-horizontal form-bordered form-row-stripped  register-form" action="@{Application.editUser()}" method="post">
           <div class="control-group">
             <label class="control-label">用户名</label>
             <div class="controls">

@@ -7,13 +7,13 @@
   <div class="page-content">
     <div class="container-fluid"> <br>
       <ul class="breadcrumb">
-        <li> <i class="icon-home"></i> <a href="index.html">Home</a> <i class="icon-angle-right"></i> </li>
+        <li> <i class="icon-home"></i> <a href="@{Application.index()}">Home</a> <i class="icon-angle-right"></i> </li>
         <li> 用户管理 <i class="icon-angle-right"></i> </li>
         <li>增加用户</li>
       </ul>
       <div class="portlet-body form">
         <div class="message">#{message flash:flash /}</div>
-        <form class="form-horizontal form-bordered form-row-stripped  register-form" action="./addUser.action" method="post">
+        <form class="form-horizontal form-bordered form-row-stripped  register-form" action="@{Manage.addUser()}" method="post">
           <div class="control-group">
             <label class="control-label">用户名</label>
             <div class="controls">
