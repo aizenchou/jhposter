@@ -95,8 +95,8 @@ $(document).ready(function() {
 		</div>
 		<a target="_blank" href="@{Application.showDetail(poster.id)}"><strong>${poster.title}</strong></a>
 		<p>${poster.detail.length() > 30 ? poster.detail[0..30] + '…' : poster.detail}</p>
-		<div class="meta">by ${poster.submitter}</div>
-	
+		<p><a target="_blank" href="@{Application.showDetail(poster.id)}">查看详细</a></p>
+		<div class="meta">by ${poster.submitter}</div>	
 	</div>
 #{/list}
 </div>
